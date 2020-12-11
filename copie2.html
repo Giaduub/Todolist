@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div>
+            <textarea id="copyArea" cols="30" rows="10"></textarea><br>
+            <button id="copy">Copy</button>
+        </div>
+ 
+        <div>
+            <textarea id="pasteArea" cols="30" rows="10"></textarea><br>
+            <button id="paste">Paste</button>
+        </div>
+ 
+    </div>
+ 
+    <script src="script.js"></script>
+</body>
+</html>
+ 
+<style>
+.container {
+  display: flex;
+}
+
+1
+2
+3
+4
+.container {
+  display: flex;
+}
+ </style>
+ <script>
+document.getElementById('copy').addEventListener('click', ()=>{
+    /* document.getElementById('copyArea').select();
+    document.execCommand('copy'); */
+    let copyArea = document.getElementById('copyArea');
+    navigator.clipboard.writeText(copyArea.value);
+
+});
+
+document.getElementById('paste').addEventListener('click', ()=>{
+    let pasteArea = document.getElementById('pasteArea');
+    pasteArea.value = '';
+
+    navigator.clipboard.readText()
+    .then((text)=>{
+        pasteArea.value = text;
+    });
+});
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+document.getElementById('copy').addEventListener('click', ()=>{
+    /* document.getElementById('copyArea').select();
+    document.execCommand('copy'); */
+    let copyArea = document.getElementById('copyArea');
+    navigator.clipboard.writeText(copyArea.value);
+ 
+});
+ 
+document.getElementById('paste').addEventListener('click', ()=>{
+    let pasteArea = document.getElementById('pasteArea');
+    pasteArea.value = '';
+ 
+    navigator.clipboard.readText()
+    .then((text)=>{
+        pasteArea.value = text;
+    });
+});</script>
+</body>
+</html>

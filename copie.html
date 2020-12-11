@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- The text field -->
+<textarea type="text" value="" id="myInput"></textarea>
+
+<!-- The button used to copy the text -->
+<button onclick="myFunction()">Copier</button>
+
+<textarea type="text" id="myPut"></textarea>
+<button onclick="myFunction2()">Coller</button>
+
+
+<script>
+    function myFunction() {
+  var copyText = document.getElementById("myInput");
+copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+
+}
+
+function myFunction2() {
+    var pasteArea = document.getElementById('myPut');
+    pasteArea.value = '';
+
+    navigator.clipboard.readText()
+    .then((text)=>{
+        pasteArea.value = text;
+    });
+}
+</script>
+
+</body>
+</html>

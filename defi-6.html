@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Défi JS - 06</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between mb-3">
+
+            <div class="logo-acs"><img
+                    src="https://www.accesscodeschool.fr/wp-content/uploads/2018/10/logo_acs_noir.png"
+                    style="max-height: 66px; max-width: 200px;" />
+            </div>
+
+
+            <div class="logo-ofp"> <img src="https://www.onlineformapro.com/wp-content/uploads/2020/01/logo-03.svg"
+                    style="max-height: 66px; max-width: 200px;" />
+            </div>
+
+        </div>
+
+        <div class="jumbotron">
+            <h1>Defi JS - 06</h1>
+            <p>Lorsque l'on clique sur le bouton 'Générer' exécuter un code qui générera un mot de passe aléatoire. Le
+                mot de passe doit être compris entre 8 et 16 caractère aléatoirement aussi. Afficher le mot de passe
+                dans un paragraphe en dessous du bouton.</p>
+        </div>
+        <h2>Résultat</h2>
+        <div id="resultat">
+            
+            <script>
+
+            function mdp(champ_cible) {
+            var ok = 'azertyupqsdfghjkmwxcvbn1234567890AZERTYUPQSDFGHJKMWXCVBN@#!?$&=+_';
+            var string_length = Math.floor(Math.random() * (16 - 8 + 1) + 8);
+            var pass = '';
+            for(i=0;i<string_length;i++){
+            var wpos = Math.round(Math.random(16)*ok.length);
+            pass+=ok.substring(wpos,wpos+1);
+            }
+            document.getElementById("resultat").innerHTML = '<input type="button" name="generer" value="Générer" onclick="javascript:generer_password("password");" /> <br/>'+pass;
+            }
+            </script>
+<input type="button" name="generer" value="Générer" onclick="javascript:mdp('password');" />
+        </div>
+
+    </div>
+
+</body>
+
+</html>

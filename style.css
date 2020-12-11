@@ -1,0 +1,27 @@
+body{
+
+    background-color: white;
+   
+}
+
+#text{
+    font-size: none;
+}
+
+#resultat{
+    display: flex;
+}
+
+#yellow{
+    color:black;
+}
+
+
+#square {
+    width: 100px;
+    height: 100px;
+    background: #d01242;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 50px);
+}

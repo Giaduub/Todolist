@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="apprenantchoisi"></div>
+    <button id="cliquemoi">Tirer aléatoirement un apprenant</button>
+    <p>Les apprenants deja passé</p>
+    <ul id="dejapsses"></ul>
+
+    <script>
+        //Définition d'un tableau apprenants qui sera utilisé par la suite
+        let apprenants = []
+        let apprenantsdejapasse = []
+        //Création d'une variable array qui analysera le sotrage local pour voir si qqch existe
+        var array = localStorage.getItem('apprenants');
+        //Si array est null alors on défini des valeurs pour le tableau apprenants
+        if (array == null) {
+            apprenants = ["<li>Anais</li>", "<li>Camille</li>", "<li>Abdou</li>", "<li>Gianni</li>", "<li>Taylor</li>", "<li>Sami</li>", "<li>Johan</li>"]
+        }
+        //Sinon on utilise les données pour la tableau issues du storage local
+        else {
+            apprenants = JSON.parse(array);
+        }
+
+        var arrayalready = localStorage.getItem('apprenantsdejapasse');
+        //Si array est null alors on défini des valeurs pour le tableau apprenants
+        if (arrayalready == null) {
+            apprenantsdejapasse = []
+            document.getElementById("dejapsses").innerHTML = apprenantsdejapasse.join(' ')
+
+        }
+        //Sinon on utilise les données pour la tableau issues du storage local
+        else {
+            apprenantsdejapasse = JSON.parse(arrayalready);
+            document.getElementById("dejapsses").innerHTML = apprenantsdejapasse.join(' ')
+
+        }
+        //Création d'une variable ciblant une div cliquemoi
+        let button = document.getElementById("cliquemoi");
+        //Ajout d'un écouteur sur celui-ci qui devra déclencher une fonction lorsque nous cliquerons dessus
+        button.addEventListener("click", function () {
+            //Création d'une variable index qui nous donnera un nombre aléatoire choisi entre 0 et la longeur du tableau apprenants
+            let index = Math.floor(Math.random() * apprenants.length)
+            var apprenantSelectionne = apprenants[index];
+            //Affichage dans la div apprenantchoisi le nom de l'apprenant tiré
+            document.getElementById("apprenantchoisi").innerHTML = apprenants[index];
+            //On supprime l'apprenant choisi du tableau
+            apprenants.splice(index, 1)
+
+            //On va ajouter dans le tableau des apprenants deja passé le nom de celui qui a été tiré
+            apprenantsdejapasse.push(apprenantSelectionne);
+            //On affiche le tableau dans notre div deja passes
+
+
+            //On enregistre le tableau des apprenants deja passés
+            localStorage.setItem('apprenantsdejapasse', JSON.stringify(apprenantsdejapasse));
+
+
+
+            document.getElementById("dejapsses").innerHTML = apprenantsdejapasse.join(' ')
+
+
+
+
+
+            //On enregistre le nouveau tableau dans le storage local
+            localStorage.setItem('apprenants', JSON.stringify(apprenants));
+
+
+
+            //Ici on défini que si notre tableau est vide alors nous le regénérons avec les valeurs suivantes
+            if (apprenants.length <= 0) {
+                apprenants = ["<li>Anais</li>", "<li>Camille</li>", "<li>Abdou</li>", "<li>Gianni</li>", "<li>Taylor</li>", "<li>Sami</li>", "<li>Johan</li>"]
+            }
+            console.log(apprenantsdejapasse)
+        })
+    </script>
+</body>
+
+</html>

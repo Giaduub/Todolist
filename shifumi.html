@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button >Pierre</button>
+    <button>Feuille</button>
+    <button>Ciseaux</button>
+
+    <div class="resultat"></div>
+
+    <script>
+        var buttons = document.querySelectorAll("button");
+        
+        for(let i=0; i < buttons.length; i++) {
+            buttons[i].addEventListener("click", function() {
+             const joueur = buttons[i].innerHTML;
+             const ordi = buttons[Math.floor(Math.random() * buttons.length)].innerHTML;
+             let resultat = "";
+             
+             if(joueur === ordi) {
+                 resultat = "Egalité";
+             }
+             else if (
+                 (joueur === "Pierre" && ordi === "Ciseau") || (joueur === "Feuille" &&  ordi === "Pierre") || (joueur === "Ciseaux" && ordi === "Feuille")
+             ){
+                 resultat = "Gagné";
+             }
+             else{
+                 resultat ="Dommage, t'es nul";
+             }
+             document.querySelector('.resultat').innerHTML = `
+                Joueur : ${joueur}</br>
+                Ordi : ${ordi} </br>
+                ${resultat}
+             `;
+             console.log(resultat)
+            });
+
+        }
+    </script>
+</body>
+</html>
