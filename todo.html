@@ -56,7 +56,41 @@
 
     <script>
         var btn = document.getElementById('btn');
-        var listId = 0;
+        var listId
+        var todotableau = localStorage.getItem('todolist');
+        if (todotableau !== null) {
+            let tab2 = JSON.parse(todotableau);
+        var listId = tab2.length;
+       // alert (listId)
+        }
+        else{
+            var listId = 0;  
+        }
+
+        //Objet de génération de liste
+        function toDo(whatToDo) {
+            this.content = function(){
+                var list = document.createElement("li");
+            list.id = 'li' + listId++;
+            var value = whatToDo;
+            var text = document.createElement('span');
+            text.innerHTML = value
+            var btnSup = document.createElement("button");
+            btnSup.innerHTML = "Supprimer";
+            btnSup.classList = "sup";
+            list.appendChild(text);
+            text.appendChild(btnSup);
+          resultat.appendChild(list);  
+          btnSup.addEventListener("click", function () {
+              resultat.removeChild(list)
+                  
+           
+              
+            });
+            }
+        }
+
+       
         var resultat = document.getElementById('resultat');
         let todo = []
           // Génération initiale de la liste.
@@ -66,29 +100,8 @@
             // alert('Y a un tableau')
             let todotableauParsed = JSON.parse(todotableau);
             for(let u = 0; u <todotableauParsed.length ;u++ ){
-                // console.log(todotableauParsed[u])
-                var list = document.createElement("li");
-            list.id = 'li' + u;
-            var value = todotableauParsed[u];
-            var text = document.createElement('span');
-            text.innerHTML = value
-            var btnSup = document.createElement("button");
-            btnSup.innerHTML = "Supprimer";
-            btnSup.classList = "sup";
-            list.appendChild(text);
-            text.appendChild(btnSup);
-          resultat.appendChild(list);
-          todo.push(value);
-
-          btnSup.onclick = function () {
-// resultat.removeChild(list)
-        var noeudCible = document.getElementById(list.id)
-        resultat.removeChild(noeudCible)
-// alert(noeudCible)
-
-}
-
-
+                var element = new toDo(todotableauParsed[u])
+                element.content();
             }
         }
 
